@@ -1,7 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function LoginRegister() {
+
+ function LoginRegister() {
+  const navigate = useNavigate();
+
   const [isRegister, setIsRegister] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -9,10 +13,13 @@ export default function LoginRegister() {
     password: "",
   });
 
+
   const toggleMode = () => {
     setIsRegister((prev) => !prev);
     setForm({ name: "", email: "", password: "" }); // Clear form when switching
   };
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,13 +29,13 @@ export default function LoginRegister() {
     }));
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
  const endpoint = isRegister
   ? "http://localhost:5000/api/auth/register"
   : "http://localhost:5000/api/auth/login";
-
 
     try {
       const res = await axios.post(endpoint, form);
@@ -37,6 +44,7 @@ export default function LoginRegister() {
       if (!isRegister) {
         // Optional: Redirect or handle login success here
         console.log("Logged in successfully", res.data);
+        navigate("/main");
       } else {
         // After successful registration, switch to login
         setIsRegister(false);
@@ -45,8 +53,7 @@ export default function LoginRegister() {
     } catch (err) {
       console.error("Error:", err);
       alert(err.response?.data?.message || "Something went wrong.");
-    }
-  };
+    }};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -109,3 +116,4 @@ export default function LoginRegister() {
     </div>
   );
 }
+export default LoginRegister;
