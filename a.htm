@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+  <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-md">
+        <h2 className="text-3xl font-semibold text-center mb-6">
+          <!-- {isRegister ? "Create an Account" : "Welcome Back"} -->
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <!-- {isRegister && ( -->
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full border border-gray-300 p-2 rounded-md"
+              required
+            />
+          <!-- )} -->
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded-md"
+            required
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded-md"
+            required
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            <!-- {isRegister ? "Register" : "Login"} -->
+          </button>
+        </form>
+
+        <div className="mt-6 text-center text-sm">
+          <!-- {isRegister ? "Already have an account?" : "Don't have an account?"}{" "} -->
+          <button
+            onClick={toggleMode}
+            className="text-blue-500 underline hover:text-blue-700"
+          >
+            <!-- {isRegister ? "Login" : "Register"} -->
+          </button>
+        </div>
+      </div>
+    </div>  </body>
+</html>
